@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Result</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+  <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-2xl text-center">
+    <h2 class="text-2xl font-semibold mb-4 text-green-600"><i class="fa-solid fa-check-circle"></i> Process Completed</h2>
+
+    <p class="mb-4 text-gray-700">Your image has been processed successfully.</p>
+
+    {% if download_url %}
+      <a href="{{ download_url }}" download class="inline-block bg-green-600 hover:bg-green-700 text-white py-2 px-5 rounded-full shadow transition-all">
+        <i class="fa-solid fa-download mr-2"></i> Download File
+      </a>
+    {% endif %}
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+  {% if encrypted_path %}
+  <a href="{{ encrypted_path }}" download class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-center">
+    <i class="fas fa-lock mr-2"></i>Download Encrypted Image
+  </a>
+  {% endif %}
+
+  {% if key_file %}
+  <a href="{{ key_file }}" download class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition text-center">
+    <i class="fas fa-key mr-2"></i>Download Key File
+  </a>
+  {% endif %}
+
+  {% if shape_file %}
+  <a href="{{ shape_file }}" download class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition text-center">
+    <i class="fas fa-cube mr-2"></i>Download Shape File
+  </a>
+  {% endif %}
+</div>
+
+
+    <div class="mt-6">
+      <a href="/" class="text-indigo-600 hover:underline text-sm"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    </div>
+  </div>
+
+</body>
+</html>

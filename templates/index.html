@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Encryption & Decryption</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 min-h-screen flex items-center justify-center px-4 py-10">
+
+  <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-3xl">
+    <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">
+      <i class="fa-solid fa-shield-halved text-purple-600"></i> Image Encryption & Decryption
+    </h1>
+
+    <!-- Tab Buttons -->
+    <div class="flex justify-center mb-8 space-x-4">
+      <button onclick="showTab('encrypt')" id="encryptTabBtn" class="tab-btn bg-purple-600 text-white px-4 py-2 rounded-lg shadow-md focus:outline-none">
+        <i class="fa-solid fa-lock mr-2"></i>Encrypt
+      </button>
+      <button onclick="showTab('decrypt')" id="decryptTabBtn" class="tab-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-lg shadow-md focus:outline-none">
+        <i class="fa-solid fa-lock-open mr-2"></i>Decrypt
+      </button>
+    </div>
+
+    <!-- Encrypt Form -->
+    <div id="encryptTab" class="tab-content">
+      <form action="/encrypt" method="post" enctype="multipart/form-data" class="space-y-6 text-center">
+        <div>
+          <label class="block mb-2 font-medium text-gray-700">Upload Image</label>
+          <input type="file" name="image_file" required class="file-input file-input-bordered w-full max-w-md mx-auto" />
+        </div>
+        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-full shadow-md transition-all">
+          <i class="fa-solid fa-lock mr-2"></i>Encrypt Image
+        </button>
+      </form>
+    </div>
+
+    <!-- Decrypt Form -->
+    <div id="decryptTab" class="tab-content hidden">
+      <form action="/decrypt" method="post" enctype="multipart/form-data" class="space-y-6 text-center">
+        <div>
+          <label class="block mb-2 font-medium text-gray-700">Encrypted Image File</label>
+          <input type="file" name="encrypted_file" required class="file-input file-input-bordered w-full max-w-md mx-auto" />
+        </div>
+        <div>
+          <label class="block mb-2 font-medium text-gray-700">Key File</label>
+          <input type="file" name="key_file" required class="file-input file-input-bordered w-full max-w-md mx-auto" />
+        </div>
+        <div>
+          <label class="block mb-2 font-medium text-gray-700">Shape File</label>
+          <input type="file" name="shape_file" required class="file-input file-input-bordered w-full max-w-md mx-auto" />
+        </div>
+        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded-full shadow-md transition-all">
+          <i class="fa-solid fa-unlock-keyhole mr-2"></i>Decrypt Image
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Script for Tab Toggle -->
+  <script>
+    function showTab(tab) {
+      document.getElementById('encryptTab').classList.add('hidden');
+      document.getElementById('decryptTab').classList.add('hidden');
+      document.getElementById('encryptTabBtn').classList.remove('bg-purple-600', 'text-white');
+      document.getElementById('decryptTabBtn').classList.remove('bg-purple-600', 'text-white');
+
+      if (tab === 'encrypt') {
+        document.getElementById('encryptTab').classList.remove('hidden');
+        document.getElementById('encryptTabBtn').classList.add('bg-purple-600', 'text-white');
+      } else {
+        document.getElementById('decryptTab').classList.remove('hidden');
+        document.getElementById('decryptTabBtn').classList.add('bg-purple-600', 'text-white');
+      }
+    }
+  </script>
+</body>
+</html>
